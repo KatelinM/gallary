@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Картинная галерея</title>
+
+	<style>
+		body{
+			font-size: 27px;
+			font-family: "Avenir LT W01 85 Heavy", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+		    font-weight: 800;
+		    font-style: normal;
+		    color: #2c373e;
+		    text-rendering: optimizeLegibility;
+		    margin-top: 0.2em;
+		    margin-bottom: 0.5em;
+		    line-height: 1.2125em;
+		    text-align: center;
+		}
+		.grid{
+			display: flex;
+			display: flex;
+		    flex-wrap: wrap;
+		    align-items: center;
+		    justify-content: space-around;
+		}
+		img{
+			padding: 11px;
+		   filter: blur(4px);
+		    width: calc(100% - 22px);
+		}
+		img:hover{
+			
+		   /* filter: blur(0px);*/
+		    
+		}
+		.picture{
+		    border: 2px solid #555a57;
+    		width: 30%;
+		}
+	</style>
+</head>
+<body topmargin=5 leftmargin=5 rightmargin=5 bottommargin=5 oncopy="return false" bgcolor=white text=black>
+	<p>Угадай картину</p>
+	<div class="grid">
+		<div class="picture"><img id="a" onmouseover="showPicture('a')" onmouseout="hidePicture('a')" src="images/dpg156.jpg" alt=""> </div>
+		<div id="b" onmouseover="changeBorder();" class="picture"><img onmouseover="showPicture('b1')" onmouseout="hidePicture('b1')" id="b1" src="images/dpg163.jpg" alt=""></div>
+		<div  class="picture" id="c" onclick="showDescription()"><img onmouseover="showPicture('c1')" onmouseout="hidePicture('c1')" id="c1"  src="images/dpg199.jpg" alt=""></div>
+		<div class="picture"><img id="d" onclick="showPictureTimeClick()"  src="images/dpg222.jpg" alt=""></div>
+		<div class="picture"><img id="e" onclick="showPicture2Click()" src="images/dpg320.jpg" alt=""></div>
+		<div class="picture" ><img  id="f"  onclick="showPictureForever()" src="images/dpg600.jpg" alt=""></div>
+	</div>	
+		<script>
+
+		//1)С помощью js  организовать тот же самый функционал что и по ссылке.
+		function showPicture(id){
+			var elem=document.getElementById(id);
+			elem.style.filter="blur(0px)";
+		};
+
+		
+		function hidePicture(id){
+			var elem=document.getElementById(id);
+			elem.style.filter="blur(5px)";
+		};
+
+		//2) С помощью js  организовать изменение цвета рамки при наведении мышки  на картину.
+		function changeBorder(){
+			b.style.borderColor="#fb0880";      
+		};
+
+		//3)* С помощью js  организовать добавление элемента <p>имя картины</p> при наведении мышки на картину.
+		function showDescription(){
+			 	var newLi = document.createElement('p');
+			 	newLi.innerHTML= "Rembrandt, <br>'Girl at a Window'";
+				c.appendChild(newLi);
+		}; 
+
+		//4)***  с помощью js сделать так чтобы картины «открывались» только при щелчке по картине и оставались открытыми 
+		function showPictureForever(){
+			f.style.filter="blur(0px)";  
+			f.src="images/svetlana-petrova-fat-cat-iconic-paintings.jpg";    
+		};
+
+		//5)******  с помощью js сделать так чтобы картины «открывались» только при щелчке по картине и оставались открытыми в течении 1 минуты
+		function showPictureTimeClick(){
+			d.style.filter="blur(0px)";
+			setTimeout(function () {d.style.filter="blur(4px)";}, 5000)      
+		};
+
+		//6) ****************  с помощью js сделать так чтобы картины «открывались» только при щелчке по картине и  скрывались при повторном щелчке
+		function showPicture2Click(){
+			if (e.style.filter=="blur(0px)") { 
+		   		e.style.filter="blur(4px)";		 
+		    } else {		 
+		       e.style.filter="blur(0px)";		 
+		    }; 
+		};
+	</script>
+	<!-- Первый вариант-->
+	<!--script>
+
+		//1)С помощью js  организовать тот же самый функционал что и по ссылке.
+		function showPicture(){
+			a.style.filter="blur(0px)";
+		};
+
+		
+		function hidePicture(){
+			a.style.filter="blur(5px)";
+		};
+
+		//2) С помощью js  организовать изменение цвета рамки при наведении мышки  на картину.
+		function changeBorder(){
+			b.style.borderColor="#fb0880";      
+		};
+
+		//3)* С помощью js  организовать добавление элемента <p>имя картины</p> при наведении мышки на картину.
+		function showDescription(){
+			 	var newLi = document.createElement('p');
+			 	newLi.innerHTML= "Rembrandt, <br>'Girl at a Window'";
+				c.appendChild(newLi);
+		}; 
+
+		//4)***  с помощью js сделать так чтобы картины «открывались» только при щелчке по картине и оставались открытыми 
+		function showPictureForever(){
+			f.style.filter="blur(0px)";      
+		};
+
+		//5)******  с помощью js сделать так чтобы картины «открывались» только при щелчке по картине и оставались открытыми в течении 1 минуты
+		function showPictureTimeClick(){
+			d.style.filter="blur(0px)";
+			setTimeout(function () {d.style.filter="blur(4px)";}, 5000)      
+		};
+
+		//6) ****************  с помощью js сделать так чтобы картины «открывались» только при щелчке по картине и  скрывались при повторном щелчке
+		function showPicture2Click(){
+			if (e.style.filter=="blur(4px)") { 
+		   		e.style.filter="blur(0px)";		 
+		    } else {		 
+		       e.style.filter="blur(4px)";		 
+		    }; 
+		};
+	</script-->
+	<script language='JavaScript1.2'>
+<!--
+if (window.Event)
+document.captureEvents(Event.MOUSEUP);
+ 
+function nocontextmenu() {
+event.cancelBubble = true, event.returnValue = false;
+ 
+return false;
+}
+ 
+function norightclick(e) {
+if (window.Event) {
+if (e.which == 2 || e.which == 3) return false;
+}
+else if (event.button == 2 || event.button == 3) {
+event.cancelBubble = true, event.returnValue = false;
+return false;
+}
+}
+ 
+if (document.layers)
+document.captureEvents(Event.MOUSEDOWN);
+ 
+document.oncontextmenu = nocontextmenu;
+document.onmousedown = norightclick;
+document.onmouseup = norightclick;
+//--> <!--/script-->
+<!--script type="text/javascript" >
+    window.onkeydown = function(evt) {
+        if(evt.keyCode == 123) return false;
+    };
+
+    window.onkeypress = function(evt) {
+        if(evt.keyCode == 123) return false;
+    };
+</script>
+</body>
+
+</html>
